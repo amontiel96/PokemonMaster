@@ -5,11 +5,15 @@ import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/App/Features/Home/data/models/pokemon_detail_model.dart';
 import 'package:poke_app/src/App/Features/Home/data/models/pokemon_model.dart';
 import 'package:poke_app/src/App/Features/Home/data/models/pokemon_response_model.dart';
+import 'package:poke_app/src/App/Features/Home/data/models/pokemon_species_model.dart';
 import '../../../../Core/errors/failures.dart';
 
 abstract class PokemonRemoteDataSource {
   Future<Either<Failure, PokemonResponse>> getPokemons(String url);
+
   Future<Either<Failure, PokemonDetailModel>> getDetailPokemon(int pokemonId);
+
+  Future<Either<Failure, PokemonSpeciesModel>> getSpeciesPokemon(int speciesId);
 }
 
 class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
@@ -48,7 +52,9 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, PokemonDetailModel>> getDetailPokemon(int pokemonId) async {
+  Future<Either<Failure, PokemonDetailModel>> getDetailPokemon(
+    int pokemonId,
+  ) async {
     final response = await client.get(
       Uri.parse('${AppConstants.home.apiPokemon}$pokemonId/'),
     );
@@ -58,6 +64,22 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
       return Right(PokemonDetailModel.fromJson(data));
     } else {
       return Left(Failure(message: 'Failed to load Pokemon details'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PokemonSpeciesModel>> getSpeciesPokemon(
+    int speciesId,
+  ) async {
+    final response = await client.get(
+      Uri.parse('${AppConstants.home.apiSpeciesPokemon}$speciesId'),
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return Right(PokemonSpeciesModel.fromJson(data));
+    } else {
+      return Left(Failure(message: 'Failed to load Pokemon species details'));
     }
   }
 }

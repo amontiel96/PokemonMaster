@@ -4,16 +4,25 @@ import '../../data/models/pokemon_species_model.dart';
 import '../../domain/useCases/get_pokemon_species.dart';
 
 class PokemonSpeciesCubit extends Cubit<PokemonSpeciesState> {
-  final PokemonSpeciesApiService apiService;
+  final GetPokemonSpecies apiService;
 
-  PokemonSpeciesCubit({required this.apiService}) : super(PokemonSpeciesLoading());
+  PokemonSpeciesCubit({required this.apiService})
+    : super(PokemonSpeciesLoading());
 
   Future<void> fetchPokemonSpeciesDetails(int speciesId) async {
     try {
-      final response = await apiService.getPokemonSpeciesDetails(speciesId);
-      emit(PokemonSpeciesLoaded(species: response));
+      final result = await apiService.getPokemonSpecies(speciesId);
+
+      result.fold(
+        (failure) => emit(PokemonSpeciesError(message: failure.message)),
+        (response) {
+          emit(PokemonSpeciesLoaded(species: response));
+        },
+      );
     } catch (e) {
-      emit(PokemonSpeciesError(message: 'Failed to load Pokemon species details'));
+      emit(
+        PokemonSpeciesError(message: 'Failed to load Pokemon species details'),
+      );
     }
   }
 }

@@ -15,7 +15,7 @@ class HomeModule extends Module {
   void binds(Injector i) {
     i.addSingleton<PokemonCubit>(() => PokemonCubit(getPokemonCase: sl<GetPokemonCase>()));
     i.addSingleton<PokemonDetailCubit>(() => PokemonDetailCubit(apiService: sl<GetPokemonDetail>()));
-    i.addSingleton<PokemonSpeciesCubit>(() => PokemonSpeciesCubit(apiService: sl<PokemonSpeciesApiService>()));
+    i.addSingleton<PokemonSpeciesCubit>(() => PokemonSpeciesCubit(apiService: sl<GetPokemonSpecies>()));
   }
 
   @override

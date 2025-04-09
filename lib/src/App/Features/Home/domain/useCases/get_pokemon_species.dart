@@ -1,25 +1,15 @@
-import 'dart:convert';
-
-import 'package:http/http.dart';
-import 'package:poke_app/src/App/Core/constants/global_constants.dart';
+import 'package:dartz/dartz.dart';
+import 'package:poke_app/src/App/Core/errors/failures.dart';
+import 'package:poke_app/src/App/Features/Home/domain/repositories/pokemon_repository.dart';
 
 import '../../data/models/pokemon_species_model.dart';
 
-class PokemonSpeciesApiService {
-  final Client client;
+class GetPokemonSpecies {
+  final PokemonRepository repository;
 
-  PokemonSpeciesApiService({required this.client});
+  GetPokemonSpecies(this.repository);
 
-  Future<PokemonSpeciesModel> getPokemonSpeciesDetails(int speciesId) async {
-    final response = await client.get(
-      Uri.parse('${AppConstants.home.apiSpeciesPokemon}$speciesId'),
-    );
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return PokemonSpeciesModel.fromJson(data);
-    } else {
-      throw Exception('Failed to load Pokemon species details');
-    }
+  Future<Either<Failure, PokemonSpeciesModel>> getPokemonSpecies(int speciesId) async {
+    return await repository.getSpeciesPokemon(speciesId);
   }
 }

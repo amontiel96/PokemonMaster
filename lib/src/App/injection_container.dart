@@ -44,8 +44,8 @@ void init() {
   sl.registerFactory(() => PokemonDetailCubit(apiService: sl()));
 
   // UseCases
-  sl.registerLazySingleton<PokemonSpeciesApiService>(
-    () => PokemonSpeciesApiService(client: sl()),
+  sl.registerLazySingleton<GetPokemonSpecies>(
+    () => GetPokemonSpecies(sl()),
   );
 
   // Cubit
