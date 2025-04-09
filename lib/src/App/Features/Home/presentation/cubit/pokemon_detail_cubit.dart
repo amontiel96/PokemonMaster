@@ -3,14 +3,21 @@ import 'package:poke_app/src/App/Features/Home/data/models/pokemon_detail_model.
 import 'package:poke_app/src/App/Features/Home/domain/useCases/get_pokemon_detail.dart';
 
 class PokemonDetailCubit extends Cubit<PokemonDetailState> {
-  final PokemonDetailApiService apiService;
+  final GetPokemonDetail apiService;
 
   PokemonDetailCubit({required this.apiService}) : super(PokemonLoading());
 
   Future<void> fetchPokemonDetails(int pokemonId) async {
     try {
-      final response = await apiService.getPokemonDetails(pokemonId);
-      emit(PokemonLoaded(pokemon: response));
+      final result = await apiService.getPokemonDetails(url: 'url', pokemonId: pokemonId);
+
+
+      result.fold((failure) => emit(PokemonError(message: failure.message)), (
+          response,
+          ) {
+        emit(PokemonLoaded(pokemon: response));
+      });
+
     } catch (e) {
       emit(PokemonError(message: 'Failed to load Pokemon details'));
     }

@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
+import 'package:poke_app/src/App/Core/constants/global_constants.dart';
+import 'package:poke_app/src/App/Features/Home/data/models/pokemon_detail_model.dart';
 import 'package:poke_app/src/App/Features/Home/data/models/pokemon_model.dart';
 import 'package:poke_app/src/App/Features/Home/data/models/pokemon_response_model.dart';
 import '../../../../Core/errors/failures.dart';
 
 abstract class PokemonRemoteDataSource {
   Future<Either<Failure, PokemonResponse>> getPokemons(String url);
+  Future<Either<Failure, PokemonDetailModel>> getDetailPokemon(int pokemonId);
 }
 
 class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
@@ -41,6 +44,20 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
       }
     } catch (e) {
       return Left(Failure(message: 'Failed to load Pokemons'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PokemonDetailModel>> getDetailPokemon(int pokemonId) async {
+    final response = await client.get(
+      Uri.parse('${AppConstants.home.apiPokemon}$pokemonId/'),
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return Right(PokemonDetailModel.fromJson(data));
+    } else {
+      return Left(Failure(message: 'Failed to load Pokemon details'));
     }
   }
 }

@@ -32,17 +32,13 @@ void init() {
   );
 
   // UseCases
-  sl.registerLazySingleton<GetPokemonCase>(
-    () => GetPokemonCase(sl()),
-  );
+  sl.registerLazySingleton<GetPokemonCase>(() => GetPokemonCase(sl()));
 
   // Cubit
   sl.registerFactory(() => PokemonCubit(getPokemonCase: sl()));
 
   // UseCases
-  sl.registerLazySingleton<PokemonDetailApiService>(
-    () => PokemonDetailApiService(client: sl()),
-  );
+  sl.registerLazySingleton<GetPokemonDetail>(() => GetPokemonDetail(sl()));
 
   // Cubit
   sl.registerFactory(() => PokemonDetailCubit(apiService: sl()));
