@@ -5,7 +5,7 @@ import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 class CoreUtils {
   // Función para obtener el color de fondo basado en los tipos de un Pokémon
   static Color getPokemonBackgroundColor(String pokemon) {
-    String color = '#ffffff'; // Color por defecto (blanco)
+    String color = '#e4ebf0'; // Color por defecto (blanco)
     color = AppConstants.home.typeColors[pokemon] ?? color;
 
     // Si el string tiene un '#', lo eliminamos

@@ -1,12 +1,10 @@
-class PokemonSpeciesModel {
-  final int id;
-  final String name;
-  final List<String> flavorTexts;
+import 'package:poke_app/src/App/Features/Home/domain/entities/pokemon_species.dart';
 
+class PokemonSpeciesModel extends PokemonSpecies {
   PokemonSpeciesModel({
-    required this.id,
-    required this.name,
-    required this.flavorTexts,
+    required super.id,
+    required super.name,
+    required super.flavorTexts,
   });
 
   factory PokemonSpeciesModel.fromJson(Map<String, dynamic> json) {

@@ -29,12 +29,12 @@ class PokemonError extends PokemonState {
 
 class PokemonCubit extends Cubit<PokemonState> {
   //final GetPokemons getPokemons;
-  final PokemonApiService getPokemons;
+  final GetPokemonCase getPokemonCase;
 
-  PokemonCubit({required this.getPokemons}) : super(PokemonLoading());
+  PokemonCubit({required this.getPokemonCase}) : super(PokemonLoading());
 
   Future<void> fetchPokemons(String url) async {
-    final result = await getPokemons.getPokemons(url);
+    final result = await getPokemonCase.execute(url: url);
 
     result.fold((failure) => emit(PokemonError(message: failure.message)), (
       response,
@@ -52,7 +52,7 @@ class PokemonCubit extends Cubit<PokemonState> {
   }
 
   Future<void> loadMorePokemons(String nextUrl) async {
-    final result = await getPokemons.getPokemons(nextUrl);
+    final result = await getPokemonCase.execute(url: nextUrl);
 
     result.fold((failure) => emit(PokemonError(message: failure.message)), (
       response,

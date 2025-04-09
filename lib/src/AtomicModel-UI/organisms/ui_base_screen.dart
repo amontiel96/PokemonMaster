@@ -101,37 +101,4 @@ class UIBaseScreen extends StatelessWidget {
       );
 
   }
-
-  Widget _bk(){
-    return
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Header
-          Container(
-            padding: EdgeInsets.all(paddingScreen),
-            color: headerBackgroundColor ?? UIColorPalette.backgroundColor,
-            child: header,
-          ),
-
-          // Body
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.all(paddingScreen),
-                color: bodyBackgroundColor,
-                child: body,
-              ),
-            ),
-          ),
-
-          // Footer
-          Container(
-            padding: EdgeInsets.all(paddingScreen),
-            color: footerBackgroundColor ?? UIColorPalette.backgroundColor,
-            child: footer,
-          ),
-        ],
-      );
-  }
 }

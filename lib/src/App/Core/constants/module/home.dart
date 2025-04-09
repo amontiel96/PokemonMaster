@@ -3,7 +3,7 @@ class HomeConstants {
   String get search => "Search";
   String get number => "Number";
   String get name => "Name";
-  String get sortBy => "Sort by:";
+  String get sortBy => "Search by:";
   String get cancel => "Cancelar";
   String get imgUrl => "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/imgUrl.png";
   String get pokeballPath => "assets/images/svg/pokeball.svg";

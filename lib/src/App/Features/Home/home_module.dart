@@ -13,7 +13,7 @@ import 'presentation/pages/home_page.dart';
 class HomeModule extends Module {
   @override
   void binds(Injector i) {
-    i.addSingleton<PokemonCubit>(() => PokemonCubit(getPokemons: sl<PokemonApiService>()));
+    i.addSingleton<PokemonCubit>(() => PokemonCubit(getPokemonCase: sl<GetPokemonCase>()));
     i.addSingleton<PokemonDetailCubit>(() => PokemonDetailCubit(apiService: sl<PokemonDetailApiService>()));
     i.addSingleton<PokemonSpeciesCubit>(() => PokemonSpeciesCubit(apiService: sl<PokemonSpeciesApiService>()));
   }

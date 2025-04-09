@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 
-enum TDSMBgType {
+enum UIBgType {
   exterior,
   home,
   large,
@@ -16,11 +16,11 @@ enum TDSMBgType {
   dynamicLarge,
 }
 
-class TDSMBackground extends StatelessWidget {
-  final TDSMBgType type;
+class UIBackground extends StatelessWidget {
+  final UIBgType type;
   final Color color;
 
-  const TDSMBackground({required this.type, super.key, required this.color});
+  const UIBackground({required this.type, super.key, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -28,35 +28,35 @@ class TDSMBackground extends StatelessWidget {
     final double dynamicHeight = MediaQuery.of(context).size.height;
 
     switch (type) {
-      case TDSMBgType.exterior:
+      case UIBgType.exterior:
         height = 272;
         break;
-      case TDSMBgType.home:
+      case UIBgType.home:
         height = 136;
         break;
-      case TDSMBgType.large:
+      case UIBgType.large:
         height = 288;
         break;
-      case TDSMBgType.medium:
+      case UIBgType.medium:
         height = kIsWeb ? 110 : 184;
         break;
-      case TDSMBgType.small:
+      case UIBgType.small:
         height = kIsWeb ? 80 : 112;
         break;
-      case TDSMBgType.extraSmall:
+      case UIBgType.extraSmall:
         height = kIsWeb ? 50 : 80;
         break;
-      case TDSMBgType.dynamicMedium:
+      case UIBgType.dynamicMedium:
         height = dynamicHeight * 0.18;
         break;
-      case TDSMBgType.dynamicSmall:
+      case UIBgType.dynamicSmall:
         height = dynamicHeight * 0.18;
         break;
-      case TDSMBgType.dynamicLarge:
+      case UIBgType.dynamicLarge:
         height = dynamicHeight * 0.25;
         break;
 
-      case TDSMBgType.circle:
+      case UIBgType.circle:
         return SvgPicture.asset(
           package: 'desingsystem',
           '.svg',

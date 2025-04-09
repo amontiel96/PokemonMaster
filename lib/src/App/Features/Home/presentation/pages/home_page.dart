@@ -142,7 +142,7 @@ class HomePageState extends State<HomePage> {
         children: [
           SizedBox(
             height: 40,
-            width: 300,
+            width: 250,
             child: UIInputSearch(
               enabled: true,
               autofocus: false,
@@ -228,7 +228,7 @@ class HomePageState extends State<HomePage> {
                     return InkWell(
                       onTap: () {
                         Modular.to.pushNamed(
-                          '/detail',
+                          '/home/detail',
                           arguments: {
                             'name': pokemon.name,
                             'id': int.parse(CoreUtils.getId(pokemon.url)),

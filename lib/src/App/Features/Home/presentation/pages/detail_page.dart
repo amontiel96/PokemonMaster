@@ -53,14 +53,14 @@ class DetailPageState extends State<DetailPage> {
           );
         } else if (state is PokemonLoaded) {
           final pokemon = state.pokemon;
-          return TDSMHeaderScaffold(
-            appBarColor:pokemon.types[0] !=null? CoreUtils.getPokemonBackgroundColor(
+          return UIHeaderScaffold(
+            appBarColor:pokemon.types[0] !=null ? CoreUtils.getPokemonBackgroundColor(
               pokemon.types[0],
             ): Colors.black,
-            backgroundType: TDSMBgType.medium,
+            backgroundType: UIBgType.medium,
             backgroundColor: Colors.white,
             showBottomBar: false,
-            header: TDSMHeader.withTitle(
+            header: UIHeader.withTitle(
               key: const Key('detail'),
               title: pokemon.name,
               onActionPressed: () => Modular.to.pop(),
@@ -95,8 +95,8 @@ class DetailPageState extends State<DetailPage> {
               Spacer(),
               Image.network(
                 AppConstants.home.imgUrl.replaceAll('imgUrl', '$id'),
-                height: 300,
-                width: 300,
+                height: 250,
+                width: 250,
                 fit: BoxFit.contain,
               ),
               Spacer(),
@@ -220,7 +220,7 @@ class DetailPageState extends State<DetailPage> {
             for (int i = 0; i < pokemon.stats.length; i++)
               Row(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 20,
                     width: 25,
                     child: Text('${(pokemon.stats[i].name)}'),
