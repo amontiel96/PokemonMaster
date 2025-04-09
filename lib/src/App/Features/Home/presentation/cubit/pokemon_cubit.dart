@@ -1,31 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poke_app/src/App/Core/utils/utils.dart';
-import 'package:poke_app/src/App/Features/Home/data/models/pokemon_model.dart';
 import 'package:poke_app/src/App/Features/Home/domain/useCases/get_pokemons.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_state.dart';
 
-class PokemonState {}
 
-class PokemonLoading extends PokemonState {}
-
-class PokemonLoaded extends PokemonState {
-  final List<PokemonModel> pokemons;
-  final String nextUrl;
-  final int count;
-  final String id;
-
-  PokemonLoaded({
-    required this.pokemons,
-    required this.nextUrl,
-    required this.count,
-    required this.id,
-  });
-}
-
-class PokemonError extends PokemonState {
-  final String message;
-
-  PokemonError({required this.message});
-}
 
 class PokemonCubit extends Cubit<PokemonState> {
   //final GetPokemons getPokemons;

@@ -1,12 +1,14 @@
 import 'dart:math';
 
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_detail_state.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_species_state.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-import '../../../../../AtomicModel-UI/organisms/tdsm_backgroud.dart';
-import '../../../../../AtomicModel-UI/organisms/tdsm_header.dart';
-import '../../../../../AtomicModel-UI/organisms/tdsm_header_scaffold.dart';
+import '../../../../../AtomicModel-UI/organisms/ui_backgroud.dart';
+import '../../../../../AtomicModel-UI/organisms/ui_header.dart';
+import '../../../../../AtomicModel-UI/organisms/ui_header_scaffold.dart';
 import '../../../../Core/utils/utils.dart';
 import '../cubit/pokemon_detail_cubit.dart';
 import '../cubit/pokemon_species_cubit.dart';
@@ -54,9 +56,10 @@ class DetailPageState extends State<DetailPage> {
         } else if (state is PokemonLoaded) {
           final pokemon = state.pokemon;
           return UIHeaderScaffold(
-            appBarColor:pokemon.types[0] !=null ? CoreUtils.getPokemonBackgroundColor(
-              pokemon.types[0],
-            ): Colors.black,
+            appBarColor:
+                pokemon.types[0] != null
+                    ? CoreUtils.getPokemonBackgroundColor(pokemon.types[0])
+                    : Colors.black,
             backgroundType: UIBgType.medium,
             backgroundColor: Colors.white,
             showBottomBar: false,

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../data/models/pokemon_species_model.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_species_state.dart';
 import '../../domain/useCases/get_pokemon_species.dart';
 
 class PokemonSpeciesCubit extends Cubit<PokemonSpeciesState> {
@@ -25,20 +24,4 @@ class PokemonSpeciesCubit extends Cubit<PokemonSpeciesState> {
       );
     }
   }
-}
-
-class PokemonSpeciesState {}
-
-class PokemonSpeciesLoading extends PokemonSpeciesState {}
-
-class PokemonSpeciesError extends PokemonSpeciesState {
-  final String message;
-
-  PokemonSpeciesError({required this.message});
-}
-
-class PokemonSpeciesLoaded extends PokemonSpeciesState {
-  final PokemonSpeciesModel species;
-
-  PokemonSpeciesLoaded({required this.species});
 }

@@ -1,6 +1,7 @@
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/App/Core/utils/utils.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_cubit.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_state.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 
 import '../../data/models/pokemon_model.dart';

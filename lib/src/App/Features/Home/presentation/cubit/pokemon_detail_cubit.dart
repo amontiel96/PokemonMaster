@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:poke_app/src/App/Features/Home/data/models/pokemon_detail_model.dart';
 import 'package:poke_app/src/App/Features/Home/domain/useCases/get_pokemon_detail.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_detail_state.dart';
 
 class PokemonDetailCubit extends Cubit<PokemonDetailState> {
   final GetPokemonDetail apiService;
@@ -9,33 +9,15 @@ class PokemonDetailCubit extends Cubit<PokemonDetailState> {
 
   Future<void> fetchPokemonDetails(int pokemonId) async {
     try {
-      final result = await apiService.getPokemonDetails(url: 'url', pokemonId: pokemonId);
-
+      final result = await apiService.getPokemonDetails(pokemonId: pokemonId);
 
       result.fold((failure) => emit(PokemonError(message: failure.message)), (
-          response,
-          ) {
+        response,
+      ) {
         emit(PokemonLoaded(pokemon: response));
       });
-
     } catch (e) {
       emit(PokemonError(message: 'Failed to load Pokemon details'));
     }
   }
-}
-
-class PokemonDetailState {}
-
-class PokemonLoading extends PokemonDetailState {}
-
-class PokemonError extends PokemonDetailState {
-  final String message;
-
-  PokemonError({required this.message});
-}
-
-class PokemonLoaded extends PokemonDetailState {
-  final PokemonDetailModel pokemon;
-
-  PokemonLoaded({required this.pokemon});
 }

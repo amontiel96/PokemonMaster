@@ -10,7 +10,6 @@ class GetPokemonDetail {
   GetPokemonDetail(this.repository);
 
   Future<Either<Failure, PokemonDetailModel>> getPokemonDetails({
-    required String url,
     required int pokemonId
   }) async {
     return await repository.getDetailPokemon(pokemonId);

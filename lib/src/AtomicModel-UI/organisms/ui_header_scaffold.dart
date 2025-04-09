@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:poke_app/src/AtomicModel-UI/organisms/tdsm_backgroud.dart';
-import 'package:poke_app/src/AtomicModel-UI/organisms/tdsm_header.dart';
+import 'package:poke_app/src/AtomicModel-UI/organisms/ui_backgroud.dart';
+import 'package:poke_app/src/AtomicModel-UI/organisms/ui_header.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class UIHeaderScaffold extends StatelessWidget {
