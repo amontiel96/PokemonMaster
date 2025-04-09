@@ -1,0 +1,1 @@
+export 'package:poke_app/src/App/Core/constants/global_constants.dart';
