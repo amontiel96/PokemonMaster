@@ -14,6 +14,7 @@ class SignupCubit extends Cubit<SignupState> {
   final prefs = StorageCoreService.instance.prefs;
 
   bool createError = false;
+  String msgError = "";
 
   void initScreen() {
     uInfo = UserInformationCase();
@@ -23,8 +24,9 @@ class SignupCubit extends Cubit<SignupState> {
   }
 
 
-  void errorCreateUser(){
+  void errorCreateUser(msg){
     createError = true;
+    msgError =msg;
     emit(SignupError());
   }
 

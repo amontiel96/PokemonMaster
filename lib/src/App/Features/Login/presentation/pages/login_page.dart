@@ -1,5 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
+import 'package:poke_app/src/App/Features/Login/presentation/cubit/login_cubit.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,14 +12,42 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
+  final LoginCubit _cubit = Modular.get<LoginCubit>();
+  bool showPassword = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _cubit.initScreen();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _baseCubitListener(context) {
+
+    return BlocConsumer<LoginCubit, LoginState>(
+      bloc: _cubit,
+      builder: (context, state) {
+        return
+          _screen(context);
+      },
+      listener: (BuildContext context, LoginState state) {
+        if(state is PreLoginLoading){
+          UILoaderScreen.showPageLoading(context);
+        }
+        if(state is PreLoginLoaded){
+          UILoaderScreen.cancelPageLoading(context);
+          if(!state.isSuccess){
+            _cubit.errorLogin(state.errorMessage);
+          }else{
+            Modular.to.popAndPushNamed('/home');
+          }
+
+        }
+      },
+    );
+  }
+
+  Widget _screen(context){
     return UIBaseScreen(
       appBarTitle: AppConstants.login.title,
       footerBackgroundColor: Colors.transparent,
@@ -50,28 +80,63 @@ class LoginPageState extends State<LoginPage> {
           UIInput(
             inputFormatters: [LengthLimitingTextInputFormatter(30)],
             textStyle: UITextStyles.contentLMedium_16,
-            keyboardType: TextInputType.text,
-            hint: 'ingresa tu correo',
-            label: 'Correo',
-            onChanged: (text) {},
+            prefix: Icon(
+              MdiIcons.email,
+              color: UIColorPalette.trainColorPrimarySecondary,
+            ),
+            label: 'Correo electronico',
+            controller: _cubit.email,
+            onChanged: (text) {
+              _cubit.emailValidation();
+            },
+            error: _cubit.emailError.isNotEmpty ? _cubit.emailError : null,
           ),
-
           UIInput(
-            inputFormatters: [LengthLimitingTextInputFormatter(30)],
+            inputFormatters: [LengthLimitingTextInputFormatter(15)],
             textStyle: UITextStyles.contentLMedium_16,
-            keyboardType: TextInputType.text,
-            hint: 'Ingresa tu contraseña',
+            suffixIcon: IconButton(
+              icon: Icon(
+                showPassword
+                    ? CupertinoIcons.eye_solid
+                    : CupertinoIcons.eye_slash_fill,
+                color: UIColorPalette.trainColorPrimarySecondary,
+              ),
+              onPressed: () {
+                if (showPassword) {
+                  showPassword = false;
+                } else {
+                  showPassword = true;
+                }
+                _cubit.changeViewPassword();
+              },
+            ),
             label: 'Contraseña',
-            obscureText: true,
-            onChanged: (text) {},
-          ),
-          UIPrimaryButton(
-            enabled: true,
-            text: 'Iniciar sesión',
-            onPressed: () {
-              Modular.to.pushNamed('/home/');
+            obscureText: !showPassword,
+            controller: _cubit.pass,
+            onChanged: (text) {
+              _cubit.validInputs();
             },
           ),
+
+          UIPrimaryButton(
+            enabled: _cubit.isEnabledBtnInit && _cubit.emailError.isEmpty,
+            text: 'Ingresar',
+            onPressed: () {
+              if(_cubit.isEnabledBtnInit && _cubit.emailError.isEmpty){
+                _cubit.signIn();
+              }
+            },
+          ),
+          Visibility(
+            visible: _cubit.loginError,
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: UILabel(
+                text: _cubit.msgError,
+                textColor: Colors.red,
+                alignment: Alignment.center,
+              ),
+            ),)
         ],
       ),
       footer: Padding(
@@ -91,5 +156,11 @@ class LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      _baseCubitListener(context);
   }
 }

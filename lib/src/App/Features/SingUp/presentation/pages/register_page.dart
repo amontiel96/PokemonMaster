@@ -173,7 +173,7 @@ class RegisterPageState extends State<RegisterPage> {
             child: Padding(
             padding: EdgeInsets.all(16),
             child: UILabel(
-              text: 'Error al crear cuenta, vuelve a intentarlo',
+              text: _cubit.msgError,
               textColor: Colors.red,
               alignment: Alignment.center,
             ),
@@ -199,7 +199,7 @@ class RegisterPageState extends State<RegisterPage> {
                         if (result) {
                           Modular.to.pushReplacementNamed('/singUp/registerComplete');
                         }else{
-                          _cubit.errorCreateUser();
+                          _cubit.errorCreateUser(msg);
                         }
 
                       },

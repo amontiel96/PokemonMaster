@@ -2,6 +2,7 @@ import 'package:core_module/core_module.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_detail_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_species_cubit.dart';
+import 'package:poke_app/src/App/Features/Login/presentation/cubit/login_cubit.dart';
 import 'package:poke_app/src/App/app_module.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 
@@ -44,6 +45,7 @@ class MasterApp extends StatelessWidget {
         BlocProvider(create: (_) => sl<PokemonDetailCubit>()),
         BlocProvider(create: (_) => sl<PokemonSpeciesCubit>()),
         BlocProvider(create: (_) => sl<SignupCubit>()),
+        BlocProvider(create: (_) => sl<LoginCubit>()),
       ],
       child: ModularApp(
         module: AppModule(),

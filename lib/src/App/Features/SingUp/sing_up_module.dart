@@ -14,6 +14,5 @@ class SingUpModule extends Module {
   void routes(RouteManager r) {
     r.child('/', child: (context) => RegisterPage());
     r.child('/registerComplete', child: (context) => RegisterCompletePage());
-    //r.child('/ob', child: (context) => const OnBoardingPage(),guards: [FirstRunGuard()]);
   }
 }

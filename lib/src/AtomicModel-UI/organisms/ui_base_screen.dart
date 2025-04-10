@@ -30,6 +30,7 @@ class UIBaseScreen extends StatelessWidget {
   final double bodyAppBarTop;
   final double bodyAppBarLeft;
   final double bodyAppBarRight;
+  final bool automaticallyImplyLeading;
 
   const UIBaseScreen({
     super.key,
@@ -54,6 +55,7 @@ class UIBaseScreen extends StatelessWidget {
     this.bodyAppBarTop = 150,
     this.bodyAppBarLeft = 35,
     this.bodyAppBarRight = 35,
+    this.automaticallyImplyLeading = true,
   });
 
   @override
@@ -64,6 +66,7 @@ class UIBaseScreen extends StatelessWidget {
         appBar:
         appBarCustom ??
             AppBar(
+              automaticallyImplyLeading: automaticallyImplyLeading,
               title: appBarTitleWidget ?? Text(appBarTitle),
               centerTitle: appBarCenterTitle,
               backgroundColor:

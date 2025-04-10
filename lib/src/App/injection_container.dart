@@ -15,6 +15,7 @@ import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_specie
 import 'package:poke_app/src/App/Features/SingUp/presentation/cubit/singup_cubit.dart';
 
 import 'Features/Home/domain/useCases/get_pokemon_detail.dart';
+import 'Features/Login/presentation/cubit/login_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -38,6 +39,7 @@ void init() {
   // Cubit
   sl.registerFactory(() => PokemonCubit(getPokemonCase: sl()));
   sl.registerFactory(() => SignupCubit());
+  sl.registerFactory(() => LoginCubit());
 
   // UseCases
   sl.registerLazySingleton<GetPokemonDetail>(() => GetPokemonDetail(sl()));

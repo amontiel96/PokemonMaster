@@ -128,6 +128,7 @@ class HomePageState extends State<HomePage> {
               onTap: () {
                 // Lógica para cerrar sesión, si es necesario
                 Navigator.pop(context); // Cierra el Drawer
+                Modular.to.pushReplacementNamed('/login');
               },
             ),
           ],

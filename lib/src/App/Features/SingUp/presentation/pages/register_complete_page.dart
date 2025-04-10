@@ -46,6 +46,7 @@ class RegisterCompletePageState extends State<RegisterCompletePage> {
 
   Widget _baseBody(context) {
     return UIBaseScreen(
+      automaticallyImplyLeading: false,
       appBarTitle: 'Registro',
       footerBackgroundColor: Colors.transparent,
       header: Column(
