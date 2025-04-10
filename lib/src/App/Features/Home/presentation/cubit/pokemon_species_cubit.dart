@@ -3,14 +3,14 @@ import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_
 import '../../domain/useCases/get_pokemon_species.dart';
 
 class PokemonSpeciesCubit extends Cubit<PokemonSpeciesState> {
-  final GetPokemonSpecies apiService;
+  final GetPokemonSpecies useCase;
 
-  PokemonSpeciesCubit({required this.apiService})
+  PokemonSpeciesCubit({required this.useCase})
     : super(PokemonSpeciesLoading());
 
   Future<void> fetchPokemonSpeciesDetails(int speciesId) async {
     try {
-      final result = await apiService.getPokemonSpecies(speciesId);
+      final result = await useCase.getPokemonSpecies(speciesId);
 
       result.fold(
         (failure) => emit(PokemonSpeciesError(message: failure.message)),

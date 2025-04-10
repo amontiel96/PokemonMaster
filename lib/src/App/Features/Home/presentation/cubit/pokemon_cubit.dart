@@ -21,6 +21,7 @@ class PokemonCubit extends Cubit<PokemonState> {
       emit(
         PokemonLoaded(
           pokemons: response.pokemons,
+          filteredPokemons: response.pokemons,
           nextUrl: response.nextUrl,
           count: response.count,
           id: CoreUtils.getId(response.nextUrl),
@@ -41,6 +42,7 @@ class PokemonCubit extends Cubit<PokemonState> {
         emit(
           PokemonLoaded(
             pokemons: currentState.pokemons + response.pokemons,
+            filteredPokemons: currentState.pokemons + response.pokemons,
             nextUrl: response.nextUrl,
             count: response.count,
             id: CoreUtils.getId(response.nextUrl),
@@ -49,4 +51,17 @@ class PokemonCubit extends Cubit<PokemonState> {
       }
     });
   }
+
+  void filterPokemons(String query) {
+    final currentState = state;
+
+    if (currentState is PokemonLoaded) {
+      final filtered = currentState.pokemons
+          .where((p) => p.name.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+
+      emit(currentState.copyWith(filteredPokemons: filtered));
+    }
+  }
+
 }
