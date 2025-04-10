@@ -171,13 +171,14 @@ class RegisterPageState extends State<RegisterPage> {
           Visibility(
             visible: _cubit.createError,
             child: Padding(
-            padding: EdgeInsets.all(16),
-            child: UILabel(
-              text: _cubit.msgError,
-              textColor: Colors.red,
-              alignment: Alignment.center,
+              padding: EdgeInsets.all(16),
+              child: UILabel(
+                text: _cubit.msgError,
+                textColor: Colors.red,
+                alignment: Alignment.center,
+              ),
             ),
-          ),)
+          ),
         ],
       ),
       footer: Padding(
@@ -197,15 +198,15 @@ class RegisterPageState extends State<RegisterPage> {
                       onResult: (result, msg) {
                         UILoaderScreen.cancelPageLoading(context);
                         if (result) {
-                          Modular.to.pushReplacementNamed('/singUp/registerComplete');
-                        }else{
+                          Modular.to.pushReplacementNamed(
+                            '/singUp/registerComplete',
+                          );
+                        } else {
                           _cubit.errorCreateUser(msg);
                         }
-
                       },
                     );
                   }
-
                 },
               ),
             ),

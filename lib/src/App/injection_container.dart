@@ -8,6 +8,7 @@ import 'package:poke_app/src/App/Features/Home/domain/repositories/pokemon_repos
 import 'package:poke_app/src/App/Features/Home/domain/useCases/get_pokemon_species.dart';
 
 import 'package:poke_app/src/App/Features/Home/domain/useCases/get_pokemons.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/home_main_cubit.dart';
 
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_detail_cubit.dart';
@@ -40,6 +41,7 @@ void init() {
   sl.registerFactory(() => PokemonCubit(getPokemonCase: sl()));
   sl.registerFactory(() => SignupCubit());
   sl.registerFactory(() => LoginCubit());
+  sl.registerFactory(() => HomeMainCubit());
 
   // UseCases
   sl.registerLazySingleton<GetPokemonDetail>(() => GetPokemonDetail(sl()));

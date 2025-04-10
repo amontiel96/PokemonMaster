@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/App/Features/Home/domain/entities/tab_info.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/home_main_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/widgets/about_section.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/widgets/favorite_section.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/widgets/home_section.dart';
@@ -14,6 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  final HomeMainCubit _cubit = Modular.get<HomeMainCubit>();
   int _viewIndex = 0;
   final List<TabInfo> tabs = [
     TabInfo(
@@ -34,6 +36,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    _cubit.listenerUserAccount();
   }
 
   @override
@@ -43,32 +46,43 @@ class HomePageState extends State<HomePage> {
       appBar: AppBar(
         leading: Builder(
           builder:
-              (context) => InkWell(
-                onTap: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(left: 15),
-                  child:
-                  AvatarGlow(
-                    glowColor: Colors.white,
-                    child: Material(
-                      // Replace this child with your own
-                      elevation: 40.0,
-                      shape: CircleBorder(),
-                      child: CircleAvatar(
-                        backgroundColor: Colors.black,
-                        child: SvgPicture.asset(
-                          AppConstants.home.pokeballPath,
-                          width: 25.0,
-                          height: 25.0,
+              (context) => BlocConsumer<HomeMainCubit, HomeMainState>(
+                bloc: _cubit,
+                builder: (contextBloc, state) {
+                  print("amsdev entra al build main del builder state:$state");
+                  if (state is HomeMainInitial) {
+                    return SizedBox.shrink();
+                  }
+                  return InkWell(
+                    onTap: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 15),
+                      child: AvatarGlow(
+                        glowColor: Colors.white,
+                        child: Material(
+                          // Replace this child with your own
+                          elevation: 40.0,
+                          shape: CircleBorder(),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.black,
+                            child: SvgPicture.asset(
+                              AppConstants.home.pokeballPath,
+                              width: 25.0,
+                              height: 25.0,
+                            ),
+                            radius: 25.0,
+                          ),
                         ),
-                        radius: 25.0,
                       ),
                     ),
-                  ),
-
-                ),
+                  );
+                },
+                listener: (BuildContext context, HomeMainState state) {
+                  print("amsdev entra listener del builder state: $state");
+                  if (state is HomeMainLoaded) {}
+                },
               ),
         ),
 
@@ -90,14 +104,29 @@ class HomePageState extends State<HomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(color: UIColorPalette.textCharcoal1),
-              accountName: Text('Mateo Montiel'),
-              accountEmail: Text('mateo.montiel@gmail.com'),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.orange,
-                child: Text('M'),
-              ),
+            BlocConsumer<HomeMainCubit, HomeMainState>(
+              bloc: _cubit,
+              builder: (contextBloc, state) {
+                print("amsdev entra al build main del builder state:$state");
+                if (state is HomeMainInitial) {
+                  return SizedBox.shrink();
+                }
+                return UserAccountsDrawerHeader(
+                  decoration: BoxDecoration(
+                    color: UIColorPalette.textCharcoal1,
+                  ),
+                  accountName: Text(_cubit.userAccount.username!),
+                  accountEmail: Text(_cubit.userAccount.email!),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.orange,
+                    child: Text(_cubit.userAccount.username!.substring(0, 1)),
+                  ),
+                );
+              },
+              listener: (BuildContext context, HomeMainState state) {
+                print("amsdev entra listener del builder state: $state");
+                if (state is HomeMainLoaded) {}
+              },
             ),
             ListTile(
               title: Text('Inicio'),
