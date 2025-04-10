@@ -1,3 +1,3 @@
 class OnboardingConstants {
-  String get title => "Presentación";
+  String get title => "Pokedex";
 }

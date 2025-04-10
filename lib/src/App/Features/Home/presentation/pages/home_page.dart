@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/App/Features/Home/domain/entities/tab_info.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/widgets/about_section.dart';
@@ -48,11 +49,25 @@ class HomePageState extends State<HomePage> {
                 },
                 child: Padding(
                   padding: EdgeInsets.only(left: 15),
-                  child: SvgPicture.asset(
-                    AppConstants.home.pokeballPath,
-                    width: 25.0,
-                    height: 25.0,
+                  child:
+                  AvatarGlow(
+                    glowColor: Colors.white,
+                    child: Material(
+                      // Replace this child with your own
+                      elevation: 40.0,
+                      shape: CircleBorder(),
+                      child: CircleAvatar(
+                        backgroundColor: Colors.black,
+                        child: SvgPicture.asset(
+                          AppConstants.home.pokeballPath,
+                          width: 25.0,
+                          height: 25.0,
+                        ),
+                        radius: 25.0,
+                      ),
+                    ),
                   ),
+
                 ),
               ),
         ),

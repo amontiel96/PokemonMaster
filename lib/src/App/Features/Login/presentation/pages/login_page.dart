@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 
@@ -10,6 +11,12 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return UIBaseScreen(
       appBarTitle: AppConstants.login.title,
@@ -17,10 +24,22 @@ class LoginPageState extends State<LoginPage> {
       header: Column(
         children: [
           SizedBox(height: 20),
-          UIAssetImage(
-            path: AppConstants.home.pokeballPath,
-            size: const Size.square(100),
-            color: UIColorPalette.backgroundColor,
+          AvatarGlow(
+            glowColor: Colors.red,
+            child: Material(
+              // Replace this child with your own
+              elevation: 40.0,
+              shape: CircleBorder(),
+              child: CircleAvatar(
+                backgroundColor: Colors.black,
+                child: UIAssetImage(
+                  path: AppConstants.home.pokeballPath,
+                  size: const Size.square(100),
+                  color: UIColorPalette.backgroundColor,
+                ),
+                radius: 25.0,
+              ),
+            ),
           ),
         ],
       ),
