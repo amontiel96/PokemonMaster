@@ -1,3 +1,4 @@
+import 'package:core_module/core_module.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_detail_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_species_cubit.dart';
@@ -13,6 +14,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
     di.init(); // inyectamos las dependencias necesarias
+    await FirebaseService.initConnection();
+
+    print('amsdev inciializo firebase');
+    await FirebaseService.startServices();
+    print("amsdev servicios inicalizados");
   } catch (e, s) {
     debugPrint(e.toString());
     debugPrintStack(stackTrace: s);
@@ -67,7 +73,7 @@ class _MainWidgetState extends State<MainWidget> {
 
   Future<bool> _init() async {
     try {
-      // Inicializa servicios aquí si es necesario
+      await StorageCoreService.instance.initStorageServices();
       return true;
     } catch (e) {
       return true;

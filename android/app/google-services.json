@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1008274796828",
+    "firebase_url": "https://pokemon-app-ams-default-rtdb.firebaseio.com",
+    "project_id": "pokemon-app-ams",
+    "storage_bucket": "pokemon-app-ams.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008274796828:android:6e261ae5217c35563c8ad9",
+        "android_client_info": {
+          "package_name": "ams.api.pokemon.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWFRbMA5WKBQ6lEtM5RnNcJ9kjQJKmN80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
