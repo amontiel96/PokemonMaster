@@ -57,7 +57,7 @@ class UIDialogLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: UIColorPalette.primaryWhite.withOpacity(.4),
+      color: UIColorPalette.textCharcoal1.withOpacity(.4),
       child: Center(
         child: SizedBox(
             width: 80,

@@ -10,6 +10,8 @@ import 'src/App/Core/module_core.dart';
 import 'package:poke_app/src/App/injection_container.dart' as di;
 import 'package:poke_app/src/App/injection_container.dart';
 
+import 'src/App/Features/SingUp/presentation/cubit/singup_cubit.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try {
@@ -41,6 +43,7 @@ class MasterApp extends StatelessWidget {
         BlocProvider(create: (_) => sl<PokemonCubit>()),
         BlocProvider(create: (_) => sl<PokemonDetailCubit>()),
         BlocProvider(create: (_) => sl<PokemonSpeciesCubit>()),
+        BlocProvider(create: (_) => sl<SignupCubit>()),
       ],
       child: ModularApp(
         module: AppModule(),

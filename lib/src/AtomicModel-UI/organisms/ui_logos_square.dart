@@ -15,7 +15,7 @@ class TDSMLogosSquare extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      package: 'desingsystem',
+      package: 'poke_app',
       logo,
       key: key,
       width: width,

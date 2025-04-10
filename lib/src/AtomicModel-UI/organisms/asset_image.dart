@@ -19,14 +19,14 @@ class TDSMAssetImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return path.endsWith('.svg')
         ? SvgPicture.asset(
-            package: 'desingsystem',
+            package: 'poke_app',
             path,
             color: color,
             width: size?.width,
             height: size?.height,
           )
         : Image.asset(
-            package: 'desingsystem',
+            package: 'poke_app',
             path,
             color: color,
             width: size?.width,

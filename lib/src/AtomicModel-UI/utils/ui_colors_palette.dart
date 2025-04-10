@@ -25,4 +25,8 @@ abstract class UIColorPalette {
   static const Color letterInput = Color(0xff1d1d1d);
 
   static const Color primaryWhite = Color(0xFFFFFFFF);
+
+  static const Color trainColorPrimaryTxt = Color(0xFF37474F);
+  static const Color secondaryGrayShadow = Color(0x73c2d1d9);
+  static const Color trainColorPrimarySecondary = Color(0xFF4EACE4);
 }

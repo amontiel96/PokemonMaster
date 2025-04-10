@@ -58,7 +58,7 @@ class UIBackground extends StatelessWidget {
 
       case UIBgType.circle:
         return SvgPicture.asset(
-          package: 'desingsystem',
+          package: 'poke_app',
           '.svg',
           width: MediaQuery.of(context).size.width,
         );
