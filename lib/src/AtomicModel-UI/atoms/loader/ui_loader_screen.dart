@@ -57,7 +57,7 @@ class UIDialogLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: UIColorPalette.colorPrimary.withOpacity(.4),
+      color: UIColorPalette.primaryWhite.withOpacity(.4),
       child: Center(
         child: SizedBox(
             width: 80,
@@ -66,7 +66,7 @@ class UIDialogLoader extends StatelessWidget {
               children: [
                 FittedBox(
                   child: LoadingAnimationWidget.fourRotatingDots(
-                    color: UIColorPalette.colorSecondary,
+                    color: UIColorPalette.backgroundColor,
                     size: 100,
                   ),
                 ),

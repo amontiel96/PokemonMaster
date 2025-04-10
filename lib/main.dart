@@ -84,7 +84,7 @@ class _MainWidgetState extends State<MainWidget> {
           return const Directionality(
             textDirection: TextDirection.ltr,
             child: Scaffold(
-              backgroundColor: UIColorPalette.colorWhite,
+              backgroundColor: UIColorPalette.primaryWhite,
               body: UIDialogLoader(),
             ),
           );
