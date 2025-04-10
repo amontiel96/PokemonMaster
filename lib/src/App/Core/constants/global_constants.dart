@@ -1,3 +1,5 @@
+import 'package:poke_app/src/App/Core/constants/module/login.dart';
+
 import 'module/home.dart';
 import 'module/onboarding.dart';
 
@@ -9,4 +11,5 @@ class AppConstants{
   static String appName = "PokeApp";
   static HomeConstants home = HomeConstants();
   static OnboardingConstants onboarding = OnboardingConstants();
+  static LoginConstants login = LoginConstants();
 }

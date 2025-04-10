@@ -21,7 +21,7 @@ class InitialPageState extends State<InitialPage> {
             enabled: true,
             text: 'Ir a Login',
             onPressed: () {
-              Modular.to.pushNamed('/home');
+              Modular.to.pushNamed('/login');
               //Modular.to.pushReplacementNamed('/home');
               },
           ),

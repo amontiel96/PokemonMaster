@@ -60,14 +60,14 @@ class UIBaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return
       Scaffold(
-        backgroundColor: UIColorPalette.backgroundColor,
+        backgroundColor: UIColorPalette.backgroundContainer,
         appBar:
         appBarCustom ??
             AppBar(
               title: appBarTitleWidget ?? Text(appBarTitle),
               centerTitle: appBarCenterTitle,
               backgroundColor:
-              appBarBackgroundColor ?? UIColorPalette.backgroundColor,
+              appBarBackgroundColor ?? UIColorPalette.backgroundContainer,
             ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -75,7 +75,7 @@ class UIBaseScreen extends StatelessWidget {
             // Header
             Container(
               padding: EdgeInsets.all(paddingScreen),
-              color: headerBackgroundColor ?? UIColorPalette.backgroundColor,
+              color: headerBackgroundColor ?? UIColorPalette.backgroundContainer,
               child: header,
             ),
 
@@ -93,7 +93,7 @@ class UIBaseScreen extends StatelessWidget {
             // Footer
             Container(
               padding: EdgeInsets.all(paddingScreen),
-              color: footerBackgroundColor ?? UIColorPalette.backgroundColor,
+              color: footerBackgroundColor ?? UIColorPalette.backgroundContainer,
               child: footer,
             ),
           ],

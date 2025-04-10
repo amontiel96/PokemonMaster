@@ -1,6 +1,7 @@
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/App/Features/Home/domain/entities/tab_info.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/widgets/about_section.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/widgets/favorite_section.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/widgets/home_section.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 
@@ -22,7 +23,7 @@ class HomePageState extends State<HomePage> {
     ),
     TabInfo(
       Icons.favorite,
-      (_) => const Text('Favoritos'),
+      (_) => const FavoriteSection(),
       'Favoritos',
       'Animations driven by scrolling & user input.',
     ),
