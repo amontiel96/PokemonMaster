@@ -85,6 +85,9 @@ para la autenticación se uso Firebase Autentication usando email y password:
 se utilizo relatime de Firebase:
 ![Demo de Proyecto](assets/images/demo/bd.png)
 
+## Almacenamiento interno
+se utilizo el plugin de Shared preferences: para almacenar los datos de los pokemos que se van agregando a la seccion de favoritos
+
 ## Backend
 Se consumio una api externa gratuita de pokemon: https://pokeapi.co/api/v2/pokemon/
 
