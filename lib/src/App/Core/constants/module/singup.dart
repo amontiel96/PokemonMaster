@@ -15,7 +15,7 @@ class SignUpConstants {
   String get confirmPass => "Confirmar contraseña";
   String get createAccount => "Crear cuenta";
   String get complete => "COMPLETADO";
-  String get congrats => "COMPLETADO";
+  String get congrats => "!Felicidades!";
   String get congratsDes => "Ya eres un(a) maestro(a) pokemon";
   String get startAdventure => "Empezar la aventura";
 
