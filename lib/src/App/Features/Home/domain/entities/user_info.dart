@@ -5,9 +5,5 @@ class UserAccount {
   final String? email;
   final String? password;
 
-  UserAccount({
-    this.username,
-    this.email,
-    this.password,
-  });
+  UserAccount({this.username, this.email, this.password});
 }

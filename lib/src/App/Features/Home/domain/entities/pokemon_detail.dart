@@ -19,5 +19,3 @@ class PokemonDetail {
     required this.stats,
   });
 }
-
-

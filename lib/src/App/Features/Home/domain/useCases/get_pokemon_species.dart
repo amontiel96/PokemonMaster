@@ -9,7 +9,9 @@ class GetPokemonSpecies {
 
   GetPokemonSpecies(this.repository);
 
-  Future<Either<Failure, PokemonSpeciesModel>> getPokemonSpecies(int speciesId) async {
+  Future<Either<Failure, PokemonSpeciesModel>> getPokemonSpecies(
+    int speciesId,
+  ) async {
     return await repository.getSpeciesPokemon(speciesId);
   }
 }

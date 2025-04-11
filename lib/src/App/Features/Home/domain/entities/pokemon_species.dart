@@ -8,5 +8,4 @@ class PokemonSpecies {
     required this.name,
     required this.flavorTexts,
   });
-
 }

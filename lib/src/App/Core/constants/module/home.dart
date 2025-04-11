@@ -17,6 +17,11 @@ class HomeConstants {
   String get height => "Height";
   String get moves => "Moves";
   String get baseStats => "Base Stats";
+  String get failLoad => "Failed to load Pokemon details";
+  String get menuStart => "Inicio";
+  String get menuFav => "Favoritos";
+  String get menuAbout => "Acerca de";
+  String get menuClose=> "Cerrar sesión";
 
   // Mapa de colores para cada tipo de Pokémon
   Map<String, String> typeColors = {

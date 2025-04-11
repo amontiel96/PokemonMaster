@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_species_state.dart';
 import '../../domain/useCases/get_pokemon_species.dart';
 
@@ -20,7 +21,7 @@ class PokemonSpeciesCubit extends Cubit<PokemonSpeciesState> {
       );
     } catch (e) {
       emit(
-        PokemonSpeciesError(message: 'Failed to load Pokemon species details'),
+        PokemonSpeciesError(message: AppConstants.home.failLoad),
       );
     }
   }

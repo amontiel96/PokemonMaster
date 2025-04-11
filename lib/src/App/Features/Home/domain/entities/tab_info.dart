@@ -1,4 +1,5 @@
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
+
 class TabInfo {
   const TabInfo(this.icon, this.builder, this.label, this.description);
 

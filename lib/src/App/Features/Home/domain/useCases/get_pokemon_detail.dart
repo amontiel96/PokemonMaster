@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:poke_app/src/App/Core/errors/failures.dart';
 import 'package:poke_app/src/App/Features/Home/data/models/pokemon_detail_model.dart';
@@ -10,7 +9,7 @@ class GetPokemonDetail {
   GetPokemonDetail(this.repository);
 
   Future<Either<Failure, PokemonDetailModel>> getPokemonDetails({
-    required int pokemonId
+    required int pokemonId,
   }) async {
     return await repository.getDetailPokemon(pokemonId);
   }

@@ -1,4 +1,5 @@
 import 'package:core_module/core_module.dart';
+import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 
 class UserInformationCase {
@@ -16,19 +17,10 @@ class UserInformationCase {
   bool showPassword = false;
   bool showPasswordConfirm = false;
 
-  bool tycIsCheck = false;
-
-  bool isComplete = false;
-  bool showTimer = true;
-
-  bool isSaveTemUser = false;
-  bool isSaveUser = false;
-
-  void validationStep5() {
+  void validationVerify() {
     btnContinue = true;
 
-    if (
-    username.text.trim().isEmpty ||
+    if (username.text.trim().isEmpty ||
         email.text.trim().isEmpty ||
         pass.text.trim().isEmpty ||
         passConfirm.text.trim().isEmpty) {
@@ -37,31 +29,31 @@ class UserInformationCase {
   }
 
   void emailValidation() {
-    validationStep5();
+    validationVerify();
     emailError = '';
 
     if (!FormatterUtils.isValidEmail(email.text.trim())) {
-      emailError = 'Formato de email no valido';
+      emailError = AppConstants.signup.errorFormatEmail;
       btnContinue = false;
     }
   }
 
   void verifyPassword(bool isValid) {
-    validationStep5();
+    validationVerify();
     passConfirmError = '';
     passConfirm.clear();
     passError = '';
     if (!isValid) {
-      passError = 'La contraseña no cumple con las especificaciones';
+      passError = AppConstants.signup.errorPassword;
       btnContinue = false;
     }
   }
 
   void passwordConfirm() {
-    validationStep5();
+    validationVerify();
     passConfirmError = '';
     if (pass.text.trim() != passConfirm.text.trim()) {
-      passConfirmError = 'la contraseña no coincide';
+      passConfirmError = AppConstants.signup.diferentPass;
       btnContinue = false;
     }
   }

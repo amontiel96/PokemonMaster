@@ -1,6 +1,6 @@
 import 'package:core_module/core_module.dart';
 import 'package:poke_app/src/App/Features/SingUp/data/models/personal_data_model.dart';
-import 'package:poke_app/src/App/Features/SingUp/domain/useCases/step5_process.dart';
+import 'package:poke_app/src/App/Features/SingUp/domain/useCases/register_process.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 
 part 'state/singup_state.dart';
@@ -19,56 +19,38 @@ class SignupCubit extends Cubit<SignupState> {
   void initScreen() {
     uInfo = UserInformationCase();
     personalDataModel = PersonalDataModel();
-    createError =false;
+    createError = false;
     emit(SignupInitial());
   }
 
-
-  void errorCreateUser(msg){
+  void errorCreateUser(msg) {
     createError = true;
-    msgError =msg;
+    msgError = msg;
     emit(SignupError());
   }
 
-  void onBackToSignup() {
-    emit(SignupOnBackSignup());
-  }
-
-  void SignupShow() {
-    emit(SignupShowState());
-  }
-
   void changeViewPassword() {
-    emit(SignupStep4Validation());
+    emit(SignupViewPasswordState());
   }
 
-  void step5ValidationEvent() {
-    uInfo.validationStep5();
-    emit(SignupStep5Validation());
-  }
-
-  void step5EmailValidationEvent() {
+  void emailValidationEvent() {
     uInfo.emailValidation();
-    emit(SignupStep5Validation());
+    emit(SignupDataChangeState());
   }
 
   void validUserName() {
-    uInfo.validationStep5();
-    emit(SignupStep5Validation());
+    uInfo.validationVerify();
+    emit(SignupDataChangeState());
   }
 
   void verifyPasswordEvent({required bool isValid}) {
     uInfo.verifyPassword(isValid);
-    emit(SignupStep5Validation());
+    emit(SignupDataChangeState());
   }
 
   void confirmPasswordEvent() {
     uInfo.passwordConfirm();
-    emit(SignupStep5Validation());
-  }
-
-  void verifyRegister() {
-    emit(SignupStep5Validation());
+    emit(SignupDataChangeState());
   }
 
   void createUser({required Function(bool, String) onResult}) async {
@@ -78,30 +60,22 @@ class SignupCubit extends Cubit<SignupState> {
     );
     result.fold(
       (exception) {
-        // Aquí manejas la excepción
-        print('amsdev Error: $exception');
         onResult(false, exception.toString());
       },
       (user) async {
-        // Aquí manejas el caso exitoso (user no será null si el registro fue exitoso)
         if (user != null) {
-          print('amsdev Registro exitoso, Usuario: ${user.email}');
           await saveUser();
           onResult(true, '');
         } else {
-          print('amsdev Usuario no registrado');
           onResult(false, 'error');
         }
       },
     );
-
-    print("amsdev llega al return final en false");
   }
 
   Future<void> saveUser() async {
     User? user = FirebaseService.instance.getUser();
     String uid = user != null ? user.uid : '';
-    final datetime = DateTime.now().toString();
     personalDataModel = personalDataModel.updateValues(
       username: uInfo.username.text,
       email: uInfo.email.text,
@@ -132,15 +106,18 @@ class SignupCubit extends Cubit<SignupState> {
         uInfo.passError.isEmpty;
   }
 
-  void validCurrentUser() async{
+  void validCurrentUser() async {
     String newUser = FirebaseService.instance.getUser()!.uid ?? '';
-    String currentUser = prefs.getValue(key: 'userid',type: StorageDataType.string,) ?? '';
-    if(currentUser.isNotEmpty){
-      if(currentUser != newUser){
-        print("amsdev es diferente user se boorara storage");
+    String currentUser =
+        prefs.getValue(key: 'userid', type: StorageDataType.string) ?? '';
+    if (currentUser.isNotEmpty) {
+      if (currentUser != newUser) {
         prefs.clear();
       }
     }
-    await prefs.write(key: 'userid', value: FirebaseService.instance.getUser()!.uid ?? '');
+    await prefs.write(
+      key: 'userid',
+      value: FirebaseService.instance.getUser()!.uid ?? '',
+    );
   }
 }

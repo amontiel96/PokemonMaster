@@ -1,4 +1,3 @@
-import 'package:poke_app/src/App/Features/Home/presentation/cubit/favorite_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_cubit.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 

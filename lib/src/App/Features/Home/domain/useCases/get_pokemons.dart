@@ -14,5 +14,3 @@ class GetPokemonCase {
     return await repository.getAllPokemon(url);
   }
 }
-
-

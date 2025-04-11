@@ -24,10 +24,7 @@ class HomeMainCubit extends Cubit<HomeMainState> {
       if (data is Map) {
         Map<String, dynamic> userMap = Map<String, dynamic>.from(data);
         userAccount = UserAccountModel.fromJson(userMap);
-      } else {
-        print("El formato de 'data' no es un Map válido");
       }
-
       emit(HomeMainLoaded(isSuccess: data != null));
     });
   }

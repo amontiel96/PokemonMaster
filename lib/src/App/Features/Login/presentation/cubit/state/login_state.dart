@@ -5,18 +5,22 @@ abstract class LoginState {}
 class PreLoginInitial extends LoginState {}
 
 class PreLoginLoading extends LoginState {}
+
 class PreLoginRedirectRegisterScreen extends LoginState {}
-class PreLoginLayoutAuthScreenStart extends LoginState {}
-class PreLoginOnBackPrelogin extends LoginState {}
-class PreLoginShowState extends LoginState {}
+
 
 class PreLoginLoaded extends LoginState {
   final bool isSuccess;
   final bool isEmailValid;
   final String errorMessage;
 
-  PreLoginLoaded({required this.isSuccess, required this.isEmailValid, required this.errorMessage});
+  PreLoginLoaded({
+    required this.isSuccess,
+    required this.isEmailValid,
+    required this.errorMessage,
+  });
 }
 
 class PreLoginError extends LoginState {}
+
 class PreLoginEmailValidation extends LoginState {}

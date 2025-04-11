@@ -11,7 +11,6 @@ import 'src/App/Core/module_core.dart';
 import 'package:poke_app/src/App/injection_container.dart' as di;
 import 'package:poke_app/src/App/injection_container.dart';
 
-import 'src/App/Features/Home/presentation/cubit/favorite_cubit.dart';
 import 'src/App/Features/Home/presentation/cubit/home_main_cubit.dart';
 import 'src/App/Features/SingUp/presentation/cubit/singup_cubit.dart';
 
@@ -20,10 +19,7 @@ void main() async {
   try {
     di.init(); // inyectamos las dependencias necesarias
     await FirebaseService.initConnection();
-
-    print('amsdev inciializo firebase');
     await FirebaseService.startServices();
-    print("amsdev servicios inicalizados");
   } catch (e, s) {
     debugPrint(e.toString());
     debugPrintStack(stackTrace: s);
@@ -49,7 +45,6 @@ class MasterApp extends StatelessWidget {
         BlocProvider(create: (_) => sl<SignupCubit>()),
         BlocProvider(create: (_) => sl<LoginCubit>()),
         BlocProvider(create: (_) => sl<HomeMainCubit>()),
-        BlocProvider(create: (_) => sl<FavoriteCubit>()),
       ],
       child: ModularApp(
         module: AppModule(),

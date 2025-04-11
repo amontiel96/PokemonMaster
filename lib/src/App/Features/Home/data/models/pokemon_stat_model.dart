@@ -6,5 +6,4 @@ class StatModel extends Stat {
   factory StatModel.fromJson(Map<String, dynamic> json) {
     return StatModel(name: json['stat']['name'], baseStat: json['base_stat']);
   }
-
 }

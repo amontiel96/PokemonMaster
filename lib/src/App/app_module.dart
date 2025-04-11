@@ -6,7 +6,12 @@ import 'Features/Onboarding/onboarding_module.dart';
 
 class AppModule extends Module {
   @override
-  List<Module> get imports => [HomeModule(),OnboardingModule(),SingUpModule(),LoginModule()];
+  List<Module> get imports => [
+    HomeModule(),
+    OnboardingModule(),
+    SingUpModule(),
+    LoginModule(),
+  ];
 
   @override
   void binds(Injector i) {}
@@ -15,7 +20,7 @@ class AppModule extends Module {
   void routes(RouteManager r) {
     r.module(Modular.initialRoute, module: OnboardingModule());
     r.module('/home', module: HomeModule());
-    r.module('/login', module:  LoginModule());
-    r.module('/singUp', module:  SingUpModule());
+    r.module('/login', module: LoginModule());
+    r.module('/singUp', module: SingUpModule());
   }
 }

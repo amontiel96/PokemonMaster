@@ -18,19 +18,19 @@ class HomePageState extends State<HomePage> {
   final HomeMainCubit _cubit = Modular.get<HomeMainCubit>();
   int _viewIndex = 0;
   final List<TabInfo> tabs = [
-    TabInfo(
-      Icons.home,
-      (_) => HomeSection(),
-      'Inicio',
-      'Simple example of Widget & List animations.',
-    ),
+    TabInfo(Icons.home, (_) => HomeSection(), AppConstants.home.menuStart, ''),
     TabInfo(
       Icons.favorite,
       (_) => FavoriteSection(),
-      'Favoritos',
-      'Animations driven by scrolling & user input.',
+      AppConstants.home.menuFav,
+      '',
     ),
-    TabInfo(Icons.info, (_) => const AboutSection(), 'Acerca de', ''),
+    TabInfo(
+      Icons.info,
+      (_) => const AboutSection(),
+      AppConstants.home.menuAbout,
+      '',
+    ),
   ];
 
   @override
@@ -49,7 +49,6 @@ class HomePageState extends State<HomePage> {
               (context) => BlocConsumer<HomeMainCubit, HomeMainState>(
                 bloc: _cubit,
                 builder: (contextBloc, state) {
-                  print("amsdev entra al build main del builder state:$state");
                   if (state is HomeMainInitial) {
                     return SizedBox.shrink();
                   }
@@ -122,33 +121,29 @@ class HomePageState extends State<HomePage> {
               listener: (BuildContext context, HomeMainState state) {},
             ),
             ListTile(
-              title: Text('Inicio'),
+              title: Text(AppConstants.home.menuStart),
               onTap: () {
-                // Aquí puedes agregar lo que deseas hacer cuando se toque el ítem
                 setState(() => _viewIndex = 0);
                 Navigator.pop(context); // Cierra el Drawer
               },
             ),
             ListTile(
-              title: Text('Favoritos'),
+              title: Text(AppConstants.home.menuFav),
               onTap: () {
-                // Aquí puedes agregar lo que deseas hacer cuando se toque el ítem
                 setState(() => _viewIndex = 1);
                 Navigator.pop(context); // Cierra el Drawer
               },
             ),
             ListTile(
-              title: Text('Acerca de'),
+              title: Text(AppConstants.home.menuAbout),
               onTap: () {
-                // Aquí puedes agregar lo que deseas hacer cuando se toque el ítem
                 setState(() => _viewIndex = 2);
                 Navigator.pop(context); // Cierra el Drawer
               },
             ),
             ListTile(
-              title: Text('Cerrar sesión'),
+              title: Text(AppConstants.home.menuClose),
               onTap: () {
-                // Lógica para cerrar sesión, si es necesario
                 Navigator.pop(context); // Cierra el Drawer
                 Modular.to.pushReplacementNamed('/login');
               },

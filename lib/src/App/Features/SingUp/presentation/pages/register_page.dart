@@ -15,14 +15,10 @@ class RegisterPageState extends State<RegisterPage> {
   final SignupCubit _cubit = Modular.get<SignupCubit>();
 
   List<TDSMSlotPassValModel> rules = [
-    TDSMSlotPassValModel('LIM_LETTERS', 'Entre 8 y 16 caracteres', 1),
-    TDSMSlotPassValModel('UPPERCASE_LETTER', 'Al menos una letra mayúscula', 1),
-    TDSMSlotPassValModel('LOWERCASE_LETTER', 'Al menos una letra minúscula', 1),
-    TDSMSlotPassValModel(
-      'NUM_SYM_LETTER',
-      'Al menos un número o símbolo ( no utilizar “ñ” o tildes)',
-      1,
-    ),
+    TDSMSlotPassValModel('LIM_LETTERS', AppConstants.signup.passVal1, 1),
+    TDSMSlotPassValModel('UPPERCASE_LETTER', AppConstants.signup.passVal2, 1),
+    TDSMSlotPassValModel('LOWERCASE_LETTER', AppConstants.signup.passVal3, 1),
+    TDSMSlotPassValModel('NUM_SYM_LETTER', AppConstants.signup.passVal4, 1),
   ];
 
   late PasswordPinValidations passwordPinValidations;
@@ -46,13 +42,13 @@ class RegisterPageState extends State<RegisterPage> {
 
   Widget _baseBody(context) {
     return UIBaseScreen(
-      appBarTitle: 'Registro',
+      appBarTitle: AppConstants.signup.title,
       footerBackgroundColor: Colors.transparent,
       header: Column(
         children: [
           SizedBox(height: 20),
           UILabel(
-            text: 'INFORMACIÓN DE CUENTA',
+            text: AppConstants.signup.subTitle,
             fontSize: UISpacing.spacingM_16,
             alignment: Alignment.center,
           ),
@@ -67,8 +63,7 @@ class RegisterPageState extends State<RegisterPage> {
             inputFormatters: [LengthLimitingTextInputFormatter(30)],
             textStyle: UITextStyles.contentLMedium_16,
             keyboardType: TextInputType.text,
-            hint: 'ingresa tu nombre de usuario',
-            label: 'Nombre de usuario',
+            label: AppConstants.signup.userName,
             onChanged: (text) {
               _cubit.validUserName();
             },
@@ -78,10 +73,10 @@ class RegisterPageState extends State<RegisterPage> {
             inputFormatters: [LengthLimitingTextInputFormatter(50)],
             textStyle: UITextStyles.contentLMedium_16,
             keyboardType: TextInputType.name,
-            label: 'Correo electrónico',
+            label: AppConstants.signup.email,
             controller: _cubit.uInfo.email,
             onChanged: (text) {
-              _cubit.step5EmailValidationEvent();
+              _cubit.emailValidationEvent();
             },
             error:
                 _cubit.uInfo.emailError.isNotEmpty
@@ -90,10 +85,9 @@ class RegisterPageState extends State<RegisterPage> {
           ),
           UIInput(
             inputFormatters: [LengthLimitingTextInputFormatter(16)],
-            //backgroundTransparent: false,
             textStyle: UITextStyles.contentLMedium_16,
             keyboardType: TextInputType.name,
-            label: 'Contraseña',
+            label: AppConstants.signup.password,
             controller: _cubit.uInfo.pass,
             error:
                 _cubit.uInfo.passError.isNotEmpty
@@ -132,7 +126,7 @@ class RegisterPageState extends State<RegisterPage> {
             visible: _cubit.uInfo.passError.isNotEmpty,
             child: UISlotPassValidation(
               items: _cubit.uInfo.dataRules,
-              title: 'Tu contraseña debe tener al menos:',
+              title: AppConstants.signup.errorDescription,
               errorMessage: '',
             ),
           ),
@@ -141,7 +135,7 @@ class RegisterPageState extends State<RegisterPage> {
             //backgroundTransparent: false,
             textStyle: UITextStyles.contentLMedium_16,
             keyboardType: TextInputType.name,
-            label: 'Confirmar contraseña',
+            label: AppConstants.signup.confirmPass,
             controller: _cubit.uInfo.passConfirm,
             onChanged: (text) {
               _cubit.confirmPasswordEvent();
@@ -190,7 +184,7 @@ class RegisterPageState extends State<RegisterPage> {
               padding: EdgeInsets.only(bottom: 15),
               child: UIPrimaryButton(
                 enabled: _cubit.continueToSave(),
-                text: 'Crear cuenta',
+                text: AppConstants.signup.createAccount,
                 onPressed: () async {
                   if (_cubit.continueToSave()) {
                     UILoaderScreen.showPageLoading(context);

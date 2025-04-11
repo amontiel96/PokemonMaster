@@ -3,5 +3,4 @@ class Stat {
   final int baseStat;
 
   Stat({required this.name, required this.baseStat});
-
 }

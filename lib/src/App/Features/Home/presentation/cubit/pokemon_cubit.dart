@@ -6,7 +6,6 @@ import 'package:poke_app/src/App/Features/Home/domain/useCases/get_pokemons.dart
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_state.dart';
 
 class PokemonCubit extends Cubit<PokemonState> {
-  //final GetPokemons getPokemons;
   final GetPokemonCase getPokemonCase;
 
   PokemonCubit({required this.getPokemonCase}) : super(PokemonLoading());
@@ -17,7 +16,6 @@ class PokemonCubit extends Cubit<PokemonState> {
     result.fold((failure) => emit(PokemonError(message: failure.message)), (
       response,
     ) {
-      // response contiene la lista de pokemons y la siguiente URL para paginar
       emit(
         PokemonLoaded(
           pokemons: response.pokemons,
@@ -38,7 +36,6 @@ class PokemonCubit extends Cubit<PokemonState> {
     ) {
       if (state is PokemonLoaded) {
         final currentState = state as PokemonLoaded;
-        // Concatenar los nuevos Pokémon con los existentes
         emit(
           PokemonLoaded(
             pokemons: currentState.pokemons + response.pokemons,

@@ -149,7 +149,6 @@ class DetailPageState extends State<DetailPage> {
           ),
         ),
 
-        // Separadores verticales (como un Divider vertical)
         Row(
           children: [
             Column(

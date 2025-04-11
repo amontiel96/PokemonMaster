@@ -4,7 +4,6 @@ class PokemonState {}
 
 class PokemonLoading extends PokemonState {}
 
-
 class PokemonLoaded extends PokemonState {
   final List<PokemonModel> pokemons;
   final List<PokemonModel> filteredPokemons;
@@ -38,9 +37,7 @@ class PokemonLoaded extends PokemonState {
   }
 }
 
-
 class PokemonError extends PokemonState {
   final String message;
-
   PokemonError({required this.message});
 }

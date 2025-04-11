@@ -2,8 +2,6 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
-import 'package:poke_app/src/App/Features/SingUp/presentation/cubit/singup_cubit.dart';
-
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
 
 class RegisterCompletePage extends StatefulWidget {
@@ -47,13 +45,13 @@ class RegisterCompletePageState extends State<RegisterCompletePage> {
   Widget _baseBody(context) {
     return UIBaseScreen(
       automaticallyImplyLeading: false,
-      appBarTitle: 'Registro',
+      appBarTitle: AppConstants.signup.title,
       footerBackgroundColor: Colors.transparent,
       header: Column(
         children: [
           SizedBox(height: 20),
           UILabel(
-            text: 'COMPLETADO',
+            text: AppConstants.signup.complete,
             fontSize: UISpacing.spacingM_16,
             alignment: Alignment.center,
           ),
@@ -88,14 +86,14 @@ class RegisterCompletePageState extends State<RegisterCompletePage> {
           const SizedBox(height: 20),
 
           Text(
-            "¡Felicidades!",
+            AppConstants.signup.congrats,
             style: UITextStyles.headlineH2_28.copyWith(
               color: UIColorPalette.trainColorPrimaryTxt,
             ),
           ),
 
           Text(
-            "Ya eres un(a) maestro(a) pokemon",
+            AppConstants.signup.congratsDes,
             style: UITextStyles.headlineH2_28.copyWith(
               color: UIColorPalette.trainColorPrimaryTxt,
             ),
@@ -148,7 +146,7 @@ class RegisterCompletePageState extends State<RegisterCompletePage> {
             Padding(
               padding: EdgeInsets.only(bottom: 15),
               child: UIPrimaryButton(
-                text: 'Empezar la aventura',
+                text: AppConstants.signup.startAdventure,
                 onPressed: () async {
                   Modular.to.pushReplacementNamed('/home');
                 },

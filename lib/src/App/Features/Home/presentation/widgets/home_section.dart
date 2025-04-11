@@ -1,6 +1,5 @@
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/App/Core/utils/utils.dart';
-import 'package:poke_app/src/App/Features/Home/presentation/cubit/favorite_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_state.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
@@ -17,7 +16,6 @@ class HomeSection extends StatefulWidget {
 class HomeSectionState extends State<HomeSection> {
   final PokemonCubit _cubit = Modular.get<PokemonCubit>();
 
-
   TextEditingController _searchController = TextEditingController();
   late List<PokemonModel> filters;
 
@@ -28,7 +26,6 @@ class HomeSectionState extends State<HomeSection> {
     super.initState();
   }
 
-  // Función que se llama cada vez que el texto cambia
   void _onSearchChanged() {
     _cubit.filterPokemons(_searchController.text);
   }
@@ -102,9 +99,7 @@ class HomeSectionState extends State<HomeSection> {
                               '/home/detail',
                               arguments: {
                                 'name': pokemon.name,
-                                'id': int.parse(
-                                  CoreUtils.getId(pokemon.url),
-                                ),
+                                'id': int.parse(CoreUtils.getId(pokemon.url)),
                                 'count': state.count,
                               },
                             );
@@ -133,7 +128,7 @@ class HomeSectionState extends State<HomeSection> {
                                         child: IconButton(
                                           color: Colors.red,
                                           icon:
-                                          pokemon.favorite == true
+                                              pokemon.favorite == true
                                                   ? Icon(Icons.favorite)
                                                   : Icon(Icons.favorite_border),
                                           iconSize: 15,

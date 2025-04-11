@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/App/Features/Home/domain/useCases/get_pokemon_detail.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_detail_state.dart';
 
@@ -17,7 +18,7 @@ class PokemonDetailCubit extends Cubit<PokemonDetailState> {
         emit(PokemonLoaded(pokemon: response));
       });
     } catch (e) {
-      emit(PokemonError(message: 'Failed to load Pokemon details'));
+      emit(PokemonError(message: AppConstants.home.failLoad));
     }
   }
 }

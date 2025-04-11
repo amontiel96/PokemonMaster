@@ -44,10 +44,10 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
           PokemonResponse(pokemons: pokemons, nextUrl: nextUrl, count: count),
         );
       } else {
-        return Left(Failure(message: 'Failed to load Pokemons'));
+        return Left(Failure(message: AppConstants.home.failLoad));
       }
     } catch (e) {
-      return Left(Failure(message: 'Failed to load Pokemons'));
+      return Left(Failure(message: AppConstants.home.failLoad));
     }
   }
 
@@ -63,7 +63,7 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
       final data = json.decode(response.body);
       return Right(PokemonDetailModel.fromJson(data));
     } else {
-      return Left(Failure(message: 'Failed to load Pokemon details'));
+      return Left(Failure(message: AppConstants.home.failLoad));
     }
   }
 
@@ -79,7 +79,7 @@ class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
       final data = json.decode(response.body);
       return Right(PokemonSpeciesModel.fromJson(data));
     } else {
-      return Left(Failure(message: 'Failed to load Pokemon species details'));
+      return Left(Failure(message: AppConstants.home.failLoad));
     }
   }
 }

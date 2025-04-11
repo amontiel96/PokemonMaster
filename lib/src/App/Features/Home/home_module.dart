@@ -6,20 +6,23 @@ import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_cubit.
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_detail_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_species_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/pages/detail_page.dart';
-
 import 'package:poke_app/src/App/injection_container.dart';
-import 'presentation/cubit/favorite_cubit.dart';
 import 'presentation/cubit/home_main_cubit.dart';
 import 'presentation/pages/home_page.dart';
 
 class HomeModule extends Module {
   @override
   void binds(Injector i) {
-    i.addSingleton<PokemonCubit>(() => PokemonCubit(getPokemonCase: sl<GetPokemonCase>()));
-    i.addSingleton<PokemonDetailCubit>(() => PokemonDetailCubit(useCase: sl<GetPokemonDetail>()));
-    i.addSingleton<PokemonSpeciesCubit>(() => PokemonSpeciesCubit(useCase: sl<GetPokemonSpecies>()));
+    i.addSingleton<PokemonCubit>(
+      () => PokemonCubit(getPokemonCase: sl<GetPokemonCase>()),
+    );
+    i.addSingleton<PokemonDetailCubit>(
+      () => PokemonDetailCubit(useCase: sl<GetPokemonDetail>()),
+    );
+    i.addSingleton<PokemonSpeciesCubit>(
+      () => PokemonSpeciesCubit(useCase: sl<GetPokemonSpecies>()),
+    );
     i.addSingleton<HomeMainCubit>(() => HomeMainCubit());
-    i.addSingleton<FavoriteCubit>(() => FavoriteCubit());
   }
 
   @override
