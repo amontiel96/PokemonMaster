@@ -6,21 +6,37 @@
 
 # AMS :. Pokemon App
 
-Aplicación para mostrar el listado de pokemons y sus detalles
+Aplicación para mostrar el listado de pokemons y sus detalles, esta app se integro con servicios de firebase para la autenticacion, al igual se integro con crashlitycs para monitoreo de errores,
+la app cuenta con login y registro, una vez creada la cuenta en el home consume una api gratuita de pokemon y muestra el listado de los datos obtenidos, cuenta con la opicon de ver los detalles de cada pokemon y agregar tus favoritos.
 
 ![profile animation](https://i.gifer.com/74fQ.gif)
 
 ### Demo:
 
-![Demo de Proyecto](assets/images/demo/img.png)
-![Demo de Proyecto](assets/images/demo/img_1.png)
-![Demo de Proyecto](assets/images/demo/img_2.png)
-![Demo de Proyecto](assets/images/demo/img_3.png)
-![Demo de Proyecto](assets/images/demo/img_4.png)
+![Demo de Proyecto](assets/images/demo/1.png)
+![Demo de Proyecto](assets/images/demo/2.png)
+![Demo de Proyecto](assets/images/demo/3.png)
+![Demo de Proyecto](assets/images/demo/4.png)
+![Demo de Proyecto](assets/images/demo/5.png)
+![Demo de Proyecto](assets/images/demo/6.png)
+![Demo de Proyecto](assets/images/demo/7.png)
 
-### Ejecutar proyecto:
+### versión web:
+![Demo de Proyecto](assets/images/demo/web.png)
 
-Ejecutar el comando Flutter run
+### Probar proyecto:
+Ejecutar los siguientes comandos:
+```
+1.- en raiz del proyecto: flutter pub get
+2.- para ios: cd ios
+    - pod install
+        - en caso de dar error de dependencias:
+            - pod repo update
+            - pod install
+            
+3.- Ejecutar el comando Flutter run y seleccionar el dispositivo ó navegador a usar
+```
+
 
 ### Estructura del proyecto:
 
@@ -60,6 +76,17 @@ lib/
 └── web/
 ```
 
+## Autenticación
+
+para la autenticación se uso Firebase Autentication usando email y password:
+![Demo de Proyecto](assets/images/demo/auth.png)
+
+## Base de datos
+se utilizo relatime de Firebase:
+![Demo de Proyecto](assets/images/demo/bd.png)
+
+## Backend
+Se consumio una api externa gratuita de pokemon: https://pokeapi.co/api/v2/pokemon/
 
 ## 📬 Contacto
 
