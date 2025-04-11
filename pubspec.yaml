@@ -82,12 +82,12 @@ dependencies:
   geolocator: ^13.0.2
   auto_animated: ^3.2.0
   flutter_rating_bar: ^4.0.1
-  core_module:
-    path: ../core-module
 #  core_module:
-#    git:
-#      url: git@github.com:amontiel96/core-module.git
-#      ref: main-pokemon
+#    path: ../core-module
+  core_module:
+    git:
+      url: git@github.com:amontiel96/core-module.git
+      ref: main-pokemon
 
 dev_dependencies:
   flutter_test:
