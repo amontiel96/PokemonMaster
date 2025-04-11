@@ -20,12 +20,24 @@ class LoginCubit extends Cubit<LoginState> {
   bool loginError = false;
   String msgError = '';
 
-
+  final prefs = StorageCoreService.instance.prefs;
 
   void errorLogin(msg){
     loginError = true;
     msgError = msg;
     emit(PreLoginError());
+  }
+  
+  void validCurrentUser() async{
+    String newUser = FirebaseService.instance.getUser()!.uid ?? '';
+    String currentUser = prefs.getValue(key: 'userid',type: StorageDataType.string,) ?? '';
+    if(currentUser.isNotEmpty){
+      if(currentUser != newUser){
+        print("amsdev es diferente user se boorara storage");
+        prefs.clear();
+      }
+    }
+    await prefs.write(key: 'userid', value: FirebaseService.instance.getUser()!.uid ?? '');
   }
 
   void navigateRegisterScreen(){

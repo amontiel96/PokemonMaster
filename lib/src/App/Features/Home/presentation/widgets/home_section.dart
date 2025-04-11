@@ -1,5 +1,6 @@
 import 'package:poke_app/src/App/Core/constants/global_constants.dart';
 import 'package:poke_app/src/App/Core/utils/utils.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/favorite_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/state/pokemon_state.dart';
 import 'package:poke_app/src/AtomicModel-UI/module_ui.dart';
@@ -15,6 +16,7 @@ class HomeSection extends StatefulWidget {
 
 class HomeSectionState extends State<HomeSection> {
   final PokemonCubit _cubit = Modular.get<PokemonCubit>();
+
 
   TextEditingController _searchController = TextEditingController();
   late List<PokemonModel> filters;
@@ -93,13 +95,16 @@ class HomeSectionState extends State<HomeSection> {
                       itemCount: pokemonsToShow.length,
                       itemBuilder: (context, index) {
                         final pokemon = pokemonsToShow[index];
+
                         return InkWell(
                           onTap: () {
                             Modular.to.pushNamed(
                               '/home/detail',
                               arguments: {
                                 'name': pokemon.name,
-                                'id': int.parse(CoreUtils.getId(pokemon.url)),
+                                'id': int.parse(
+                                  CoreUtils.getId(pokemon.url),
+                                ),
                                 'count': state.count,
                               },
                             );
@@ -127,10 +132,18 @@ class HomeSectionState extends State<HomeSection> {
                                         padding: EdgeInsets.only(left: 50),
                                         child: IconButton(
                                           color: Colors.red,
-                                          icon: Icon(Icons.favorite_border),
+                                          icon:
+                                          pokemon.favorite == true
+                                                  ? Icon(Icons.favorite)
+                                                  : Icon(Icons.favorite_border),
                                           iconSize: 15,
                                           onPressed: () {
-
+                                            _cubit.setStatus(
+                                              '${CoreUtils.getId(pokemon.url)}#${pokemon.name}',
+                                              pokemonsToShow,
+                                              index,
+                                              pokemon.favorite,
+                                            );
                                           },
                                         ),
                                       ),

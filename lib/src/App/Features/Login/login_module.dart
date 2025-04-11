@@ -13,7 +13,6 @@ class LoginModule extends Module {
   @override
   void routes(RouteManager r) {
     r.child('/', child: (context) => LoginPage());
-    //r.child('/ob', child: (context) => const OnBoardingPage(),guards: [FirstRunGuard()]);
   }
 
 }

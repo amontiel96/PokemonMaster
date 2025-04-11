@@ -198,6 +198,7 @@ class RegisterPageState extends State<RegisterPage> {
                       onResult: (result, msg) {
                         UILoaderScreen.cancelPageLoading(context);
                         if (result) {
+                          _cubit.validCurrentUser();
                           Modular.to.pushReplacementNamed(
                             '/singUp/registerComplete',
                           );

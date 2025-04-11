@@ -26,7 +26,7 @@ class HomePageState extends State<HomePage> {
     ),
     TabInfo(
       Icons.favorite,
-      (_) => const FavoriteSection(),
+      (_) => FavoriteSection(),
       'Favoritos',
       'Animations driven by scrolling & user input.',
     ),
@@ -63,7 +63,7 @@ class HomePageState extends State<HomePage> {
                         glowColor: Colors.white,
                         child: Material(
                           // Replace this child with your own
-                          elevation: 40.0,
+                          elevation: 5.0,
                           shape: CircleBorder(),
                           child: CircleAvatar(
                             backgroundColor: Colors.black,
@@ -72,17 +72,14 @@ class HomePageState extends State<HomePage> {
                               width: 25.0,
                               height: 25.0,
                             ),
-                            radius: 25.0,
+                            radius: 5.0,
                           ),
                         ),
                       ),
                     ),
                   );
                 },
-                listener: (BuildContext context, HomeMainState state) {
-                  print("amsdev entra listener del builder state: $state");
-                  if (state is HomeMainLoaded) {}
-                },
+                listener: (BuildContext context, HomeMainState state) {},
               ),
         ),
 
@@ -107,7 +104,6 @@ class HomePageState extends State<HomePage> {
             BlocConsumer<HomeMainCubit, HomeMainState>(
               bloc: _cubit,
               builder: (contextBloc, state) {
-                print("amsdev entra al build main del builder state:$state");
                 if (state is HomeMainInitial) {
                   return SizedBox.shrink();
                 }
@@ -123,10 +119,7 @@ class HomePageState extends State<HomePage> {
                   ),
                 );
               },
-              listener: (BuildContext context, HomeMainState state) {
-                print("amsdev entra listener del builder state: $state");
-                if (state is HomeMainLoaded) {}
-              },
+              listener: (BuildContext context, HomeMainState state) {},
             ),
             ListTile(
               title: Text('Inicio'),
@@ -166,7 +159,6 @@ class HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(children: [tabs[_viewIndex].builder(context)]),
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _viewIndex,
         selectedFontSize: 14,

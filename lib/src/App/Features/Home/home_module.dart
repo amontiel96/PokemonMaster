@@ -8,6 +8,7 @@ import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_specie
 import 'package:poke_app/src/App/Features/Home/presentation/pages/detail_page.dart';
 
 import 'package:poke_app/src/App/injection_container.dart';
+import 'presentation/cubit/favorite_cubit.dart';
 import 'presentation/cubit/home_main_cubit.dart';
 import 'presentation/pages/home_page.dart';
 
@@ -18,6 +19,7 @@ class HomeModule extends Module {
     i.addSingleton<PokemonDetailCubit>(() => PokemonDetailCubit(useCase: sl<GetPokemonDetail>()));
     i.addSingleton<PokemonSpeciesCubit>(() => PokemonSpeciesCubit(useCase: sl<GetPokemonSpecies>()));
     i.addSingleton<HomeMainCubit>(() => HomeMainCubit());
+    i.addSingleton<FavoriteCubit>(() => FavoriteCubit());
   }
 
   @override

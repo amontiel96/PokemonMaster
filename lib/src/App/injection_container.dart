@@ -1,3 +1,4 @@
+import 'package:core_module/features/storage/data/repositories/storage_preference_impl.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:poke_app/src/App/Features/Home/data/datasources/pokemon_remote_datasource.dart';
@@ -8,6 +9,7 @@ import 'package:poke_app/src/App/Features/Home/domain/repositories/pokemon_repos
 import 'package:poke_app/src/App/Features/Home/domain/useCases/get_pokemon_species.dart';
 
 import 'package:poke_app/src/App/Features/Home/domain/useCases/get_pokemons.dart';
+import 'package:poke_app/src/App/Features/Home/presentation/cubit/favorite_cubit.dart';
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/home_main_cubit.dart';
 
 import 'package:poke_app/src/App/Features/Home/presentation/cubit/pokemon_cubit.dart';
@@ -42,6 +44,7 @@ void init() {
   sl.registerFactory(() => SignupCubit());
   sl.registerFactory(() => LoginCubit());
   sl.registerFactory(() => HomeMainCubit());
+  sl.registerFactory(() => FavoriteCubit());
 
   // UseCases
   sl.registerLazySingleton<GetPokemonDetail>(() => GetPokemonDetail(sl()));
@@ -56,4 +59,5 @@ void init() {
 
   // Cubit
   sl.registerFactory(() => PokemonSpeciesCubit(useCase: sl()));
+  sl.registerLazySingleton<StoragePreferencesImpl>(() => StoragePreferencesImpl());
 }

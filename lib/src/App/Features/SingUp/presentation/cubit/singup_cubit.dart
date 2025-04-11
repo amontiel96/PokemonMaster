@@ -131,4 +131,16 @@ class SignupCubit extends Cubit<SignupState> {
         uInfo.emailError.isEmpty &&
         uInfo.passError.isEmpty;
   }
+
+  void validCurrentUser() async{
+    String newUser = FirebaseService.instance.getUser()!.uid ?? '';
+    String currentUser = prefs.getValue(key: 'userid',type: StorageDataType.string,) ?? '';
+    if(currentUser.isNotEmpty){
+      if(currentUser != newUser){
+        print("amsdev es diferente user se boorara storage");
+        prefs.clear();
+      }
+    }
+    await prefs.write(key: 'userid', value: FirebaseService.instance.getUser()!.uid ?? '');
+  }
 }

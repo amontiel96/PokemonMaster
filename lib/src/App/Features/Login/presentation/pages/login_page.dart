@@ -17,7 +17,6 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _cubit.initScreen();
   }
@@ -39,6 +38,7 @@ class LoginPageState extends State<LoginPage> {
           if(!state.isSuccess){
             _cubit.errorLogin(state.errorMessage);
           }else{
+              _cubit.validCurrentUser();
             Modular.to.popAndPushNamed('/home');
           }
 
